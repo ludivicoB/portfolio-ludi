@@ -3,7 +3,7 @@ import "./style.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Container, Row, Col } from "react-bootstrap";
 import { dataportfolio, meta } from "../../content_option";
-
+import Card from "./Card";
 export const Portfolio = () => {
   return (
     <HelmetProvider>
@@ -19,16 +19,32 @@ export const Portfolio = () => {
             <hr className="t_border my-4 ml-0 text-left" />
           </Col>
         </Row>
+
         <div className="mb-5 po_items_ho">
           {dataportfolio.map((data, i) => (
-            <div key={i} className="po_item">
-              <img src={data.img} alt="" />
-              <div className="content">
+            <div class="book">
+              <div>
                 <p>{data.description}</p>
-                <a href={data.link} target="_blank" rel="noopener noreferrer">
-                  View Project
-                </a>
+                <div className="card-content">
+                  <a
+                    className="btn"
+                    href={data.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View Project
+                  </a>
+                </div>
               </div>
+              <div
+                class="cover"
+                style={{
+                  backgroundImage: `url(${data.img})`,
+                  backgroundSize: "contain",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                }}
+              ></div>
             </div>
           ))}
         </div>
