@@ -1,17 +1,16 @@
 .po_items_ho {
-    column-width: 15em;
-    -moz-column-width: 15em;
-    -webkit-column-width: 15em;
-    column-gap: 4rem;
-    -moz-column-gap: 4rem;
-    -webkit-column-gap: 4rem;
+    display: flex; /* Use Flexbox for horizontal layout */
+    flex-wrap: wrap; /* Allow items to wrap onto the next row */
+    gap: 1.5rem; /* Space between items */
+    justify-content: center; /* Center items in the container */
+    align-items: stretch; /* Make all items match the height of the tallest one */
 }
 
 .po_item {
-    display: inline-block;
-    width: 100%;
+    flex: 1 1 calc(33.33% - 1.5rem); /* Responsive: 3 items per row */
+    max-width: calc(33.33% - 1.5rem); /* Prevent items from stretching */
     text-align: center;
-    margin: 0.5rem auto;
+    margin: 0.5rem 0;
     position: relative;
     background: var(--secondary-color);
     padding: 6px;
@@ -19,16 +18,19 @@
     transition: 0.3s ease;
     font-size: 0;
     min-height: 300px;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .po_item img {
     max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
 .po_item .content {
     position: absolute;
-    height: 0;
-    width: 0;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -36,30 +38,18 @@
     z-index: 1;
     display: flex;
     justify-content: center;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
     height: 100%;
     width: 100%;
+    opacity: 0;
     transition: 0.3s ease-in-out;
-    opacity: 0;
     border: 1px solid black;
-}
-
-.po_item .content {
-    opacity: 0;
-    transition-delay: 1s;
-    transition: 0.3s ease;
     font-size: 20px;
 }
 
 .po_item:hover {
     box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.25);
-}
-
-.po_item:hover .content {
-    height: calc(100% - 30px);
-    width: calc(100% - 30px);
-    opacity: 1;
 }
 
 .po_item:hover .content {
@@ -73,8 +63,11 @@
     padding: 4px 8px;
     text-align: center;
     font-size: 1rem;
+    text-decoration: none;
 }
 
 .po_item .content a:hover {
+    background: var(--text-color);
+    color: var(--bg-color);
     text-decoration: none;
 }
